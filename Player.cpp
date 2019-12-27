@@ -1,7 +1,9 @@
 #include <Tinyfont.h>
 #include "Player.h"
+#include "Bullet.h"
+#include "Vector.h"
 
-static const char DEFAULT_SPR = 'W';
+static const char DEFAULT_SPR = 'E';
 
 void Player::init(int x, int y, char spr, int score) {
     this->x = x;
@@ -21,27 +23,37 @@ Player::Player(int x, int y, char spr) {
     init(x, y, spr, 0);
 }
 
-Player::Player(int x, int y, char spr, int score) {
-    init(x, y, spr, score);
-}
-
-void Player::draw(Tinyfont *tf) {
-    tf->setCursor(this->x, this->y);
-    tf->print(this->spr);
+void Player::draw(Tinyfont& tf) {
+    tf.setCursor(x, y);
+    tf.print(spr);
 }
 
 void Player::moveUp() {
-    this->y -= this->speed;
+    y -= speed;
 }
 
 void Player::moveDown() {
-    this->y += this->speed;
+    y += speed;
 }
 
 void Player::moveLeft() {
-    this->x -= this->speed;
+    x -= speed;
 }
 
 void Player::moveRight() {
-    this->x += this->speed;
+    x += speed;
+}
+
+void Player::shoot(Vector bullets) {
+    auto index = -1;
+    for (int i = 0; i < bullets.size(); i++) {
+        if (!bullets[i].active) {
+            index = i;
+            break;
+        }
+    }
+    if (index == -1) return;
+    bullets[index].x = x + w + 2;
+    bullets[index].y = y;
+    bullets[index].active = true;
 }

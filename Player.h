@@ -1,7 +1,9 @@
-#include <Tinyfont.h>
+#ifndef QWERTY_WING_PLAYER_H
+#define QWERTY_WING_PLAYER_H
 
-#ifndef PLAYER_H
-#define PLAYER_H
+#include <Tinyfont.h>
+#include "Bullet.h"
+#include "Vector.h"
 
 class Player
 {
@@ -19,13 +21,14 @@ public:
 
     Player();
     Player(int x, int y, char spr);
-    Player(int x, int y, char spr, int score);
 
-    void draw(Tinyfont *tf);
+    void draw(Tinyfont& tf);
     void moveUp();
     void moveDown();
     void moveLeft();
     void moveRight();
+
+    void shoot(Vector);
 };
 
 #endif
