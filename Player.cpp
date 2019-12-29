@@ -13,6 +13,7 @@ void Player::init(int x, int y, char spr, int score) {
     this->w = 4;
     this->h = 4;
     this->speed = 1;
+    this->bullets = new Vector(3);
 }
 
 Player::Player() {
@@ -44,16 +45,20 @@ void Player::moveRight() {
     x += speed;
 }
 
-void Player::shoot(Vector bullets) {
+void Player::shoot() {
+    Serial.print("SHOTTED\n");
     auto index = -1;
-    for (int i = 0; i < bullets.size(); i++) {
-        if (!bullets[i].active) {
+    for (int i = 0; i < bullets->size(); i++) {
+        Bullet& b = bullets->get(i);
+        if (!b.active) {
             index = i;
             break;
         }
     }
+    Serial.println(index);
     if (index == -1) return;
-    bullets[index].x = x + w + 2;
-    bullets[index].y = y;
-    bullets[index].active = true;
+    Bullet& b = bullets->get(index);
+    b.x = x + w + 2;
+    b.y = y;
+    b.active = true;
 }

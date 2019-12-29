@@ -14,7 +14,6 @@ static const int GAME_OVER = 2;
 int gameState = GAME_PLAY;
 
 Player player = Player::Player();
-Vector bullets(3);
 
 void resetGame() {
     player = Player::Player(0, arduboy.height() / 2, 'E');
@@ -47,7 +46,7 @@ void gamePlay() {
         player.moveRight();
     }
     if (arduboy.justPressed(A_BUTTON)) {
-        player.shoot(bullets);
+        player.shoot();
     }
 
     //
@@ -55,12 +54,13 @@ void gamePlay() {
     //
 
     // bullets
-    for (int i = 0; i < bullets.size(); i++) {
-        if (bullets[i].active) {
-            bullets[i].x += bullets[i].speed;
+    for (int i = 0; i < player.bullets->size(); i++) {
+        Bullet &b = player.bullets->get(i);
+        if (b.active) {
+            b.x += b.speed;
         }
-        if (bullets[i].x > arduboy.width() + 10) {
-            bullets[i].reset();
+        if (b.x > arduboy.width() + 10) {
+            b.reset();
         }
     }
 
@@ -74,9 +74,10 @@ void gamePlay() {
 
     // bullets
     arduboy.setCursor(0, 0);
-    for (int i = 0; i < bullets.size(); i++) {
-        if (bullets[i].active) {
-            bullets[i].draw(tinyfont);
+    for (int i = 0; i < player.bullets->size(); i++) {
+        Bullet &b = player.bullets->get(i);
+        if (b.active) {
+            b.draw(tinyfont);
         }
     }
 
@@ -122,6 +123,7 @@ void setup() {
     arduboy.setFrameRate(FPS);
     arduboy.initRandomSeed();
     resetGame();
+    Serial.begin(9600);
 }
 
 void loop() {

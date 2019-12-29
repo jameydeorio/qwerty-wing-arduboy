@@ -18,6 +18,7 @@ public:
     int w;
     int h;
     int speed;
+    Vector* bullets;
 
     Player();
     Player(int x, int y, char spr);
@@ -28,7 +29,7 @@ public:
     void moveLeft();
     void moveRight();
 
-    void shoot(Vector);
+    void shoot();
 };
 
 #endif

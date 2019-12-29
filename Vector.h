@@ -9,6 +9,7 @@ class Vector {
 public:
     Vector(int s) :elem{new Bullet[s]}, sz{s} {};
     Bullet& operator[](int i) { return elem[i]; }
+    Bullet& get(int i) { return elem[i]; }
     int size() { return sz; }
 };
 
