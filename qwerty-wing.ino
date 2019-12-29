@@ -1,7 +1,7 @@
 #include <Arduboy2.h>
 #include <Tinyfont.h>
 #include "Player.h"
-#include "Vector.h"
+#include "BulletVector.h"
 
 Arduboy2 arduboy;
 Tinyfont tinyfont = Tinyfont(arduboy.sBuffer, Arduboy2::width(), Arduboy2::height());

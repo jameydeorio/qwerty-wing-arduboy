@@ -1,7 +1,7 @@
 #include <Tinyfont.h>
 #include "Player.h"
 #include "Bullet.h"
-#include "Vector.h"
+#include "BulletVector.h"
 
 static const char DEFAULT_SPR = 'E';
 
@@ -13,7 +13,7 @@ void Player::init(int x, int y, char spr, int score) {
     this->w = 4;
     this->h = 4;
     this->speed = 1;
-    this->bullets = new Vector(3);
+    this->bullets = new BulletVector(3);
 }
 
 Player::Player() {

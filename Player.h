@@ -3,7 +3,7 @@
 
 #include <Tinyfont.h>
 #include "Bullet.h"
-#include "Vector.h"
+#include "BulletVector.h"
 
 class Player
 {
@@ -18,7 +18,7 @@ public:
     int w;
     int h;
     int speed;
-    Vector* bullets;
+    BulletVector* bullets;
 
     Player();
     Player(int x, int y, char spr);

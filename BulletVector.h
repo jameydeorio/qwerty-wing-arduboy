@@ -1,16 +1,16 @@
-#ifndef QWERTY_WING_VECTOR_H
-#define QWERTY_WING_VECTOR_H
+#ifndef QWERTY_WING_BULLET_VECTOR_H
+#define QWERTY_WING_BULLET_VECTOR_H
 
 #include "Bullet.h"
 
-class Vector {
+class BulletVector {
     Bullet* elem;
     int sz;
 public:
-    Vector(int s) :elem{new Bullet[s]}, sz{s} {};
+    BulletVector(int s) :elem{new Bullet[s]}, sz{s} {};
     Bullet& operator[](int i) { return elem[i]; }
     Bullet& get(int i) { return elem[i]; }
     int size() { return sz; }
 };
 
-#endif //QWERTY_WING_VECTOR_H
+#endif //QWERTY_WING_BULLET_VECTOR_H
